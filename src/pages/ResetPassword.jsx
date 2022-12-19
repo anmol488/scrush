@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../../firebase";
 
 import Header from "../partials/Header";
 
 function ResetPassword() {
+  const [email, setEmail] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [formError, setFormError] = useState("");
+
+  const resetPassword = async () => {
+    event.preventDefault();
+    if (formError) setFormError("");
+
+    if (!email.includes("@")) {
+      return setFormError("Please enter a valid email");
+    }
+
+    setSuccess(false);
+    try {
+      const reset = await sendPasswordResetEmail(auth, email);
+    } catch (error) {
+      alert(error.message);
+    }
+    setSuccess(true);
+  };
+
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
       {/*  Site header */}
@@ -40,12 +63,32 @@ function ResetPassword() {
                         className="form-input w-full text-gray-800"
                         placeholder="Enter your email"
                         required
+                        onChange={(event) => {
+                          setEmail(event.target.value);
+                        }}
                       />
                     </div>
                   </div>
+
+                  <div className="text-red-500 text-center mt-6">
+                    {formError}
+                  </div>
+
+                  {success ? (
+                    <div className="text-green-500 text-center mt-6">
+                      Reset link has been sent. Check your email!
+                    </div>
+                  ) : (
+                    " "
+                  )}
+
                   <div className="flex flex-wrap -mx-3 mt-6">
                     <div className="w-full px-3">
-                      <button className="btn text-white bg-blue-600 hover:bg-blue-700 w-full">
+                      <button
+                        type="button"
+                        className="btn text-white bg-blue-600 hover:bg-blue-700 w-full"
+                        onClick={resetPassword}
+                      >
                         Send reset link
                       </button>
                     </div>

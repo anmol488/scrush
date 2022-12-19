@@ -1,12 +1,26 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: process.env.PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.PUBLIC_FIREBASE_APP_ID,
+  apiKey: "AIzaSyAQa6UHewTdnnPm4bz4bZx42esoqY0T5kg",
+  authDomain: "scrush-3205a.firebaseapp.com",
+  projectId: "scrush-3205a",
+  storageBucket: "scrush-3205a.appspot.com",
+  messagingSenderId: "1058049563956",
+  appId: "1:1058049563956:web:bbe075ef9754e0edec5961",
 };
 
-const app = initializeApp(firebaseConfig);
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const db = getFirestore();
+const auth = getAuth();
+const storage = getStorage();
+
+export { app, auth, db, storage };
+
+const provider = new GoogleAuthProvider();
+
+export const continueWithGoogle = () => {
+  signInWithPopup(auth, provider).catch((error) => alert(error));
+};
