@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Transition from "../utils/Transition";
 
-import Account from "../images/account.svg"
+import Account from "../images/account.svg";
 import Browse from "../images/browse.svg";
 import Profile from "../images/profile.svg";
 
@@ -74,8 +74,8 @@ function Features() {
                       (1) Create an account
                     </div>
                     <div className="text-gray-600">
-                      Sign up with email & password or continue with Google to create
-                      your profile.
+                      Sign up with email & password or continue with Google to
+                      create an account.
                     </div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
@@ -105,8 +105,8 @@ function Features() {
                       (2) Create your product page
                     </div>
                     <div className="text-gray-600">
-                      This is where you showcase your product. Tell us
-                      everything about it. Include social media links if any.
+                      You'll be greeted with your dashboard. Add what you're
+                      building using the "Add Product" button.
                     </div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
