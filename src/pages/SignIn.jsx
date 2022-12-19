@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, continueWithGoogle } from "../../firebase";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { auth } from "../../firebase";
 
 import Header from "../partials/Header";
 
@@ -9,6 +13,7 @@ function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [formError, setFormError] = useState("");
+  const provider = new GoogleAuthProvider();
 
   const signIn = async () => {
     event.preventDefault();
@@ -19,7 +24,15 @@ function SignIn() {
     }
 
     try {
-      const user = await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const continueWithGoogle = async () => {
+    try {
+      signInWithPopup(auth, provider);
     } catch (error) {
       alert(error.message);
     }
@@ -49,7 +62,7 @@ function SignIn() {
                         className="block text-gray-800 text-sm font-medium mb-1"
                         htmlFor="email"
                       >
-                        Email
+                        Email <span className="text-red-600">*</span>
                       </label>
                       <input
                         id="email"
@@ -70,7 +83,7 @@ function SignIn() {
                           className="block text-gray-800 text-sm font-medium mb-1"
                           htmlFor="password"
                         >
-                          Password
+                          Password <span className="text-red-600">*</span>
                         </label>
                         <Link
                           to="/reset-password"

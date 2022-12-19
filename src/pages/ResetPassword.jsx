@@ -20,7 +20,7 @@ function ResetPassword() {
 
     setSuccess(false);
     try {
-      const reset = await sendPasswordResetEmail(auth, email);
+      await sendPasswordResetEmail(auth, email);
     } catch (error) {
       alert(error.message);
     }
@@ -85,7 +85,7 @@ function ResetPassword() {
                   <div className="flex flex-wrap -mx-3 mt-6">
                     <div className="w-full px-3">
                       <button
-                        type="button"
+                        type="submit"
                         className="btn text-white bg-blue-600 hover:bg-blue-700 w-full"
                         onClick={resetPassword}
                       >

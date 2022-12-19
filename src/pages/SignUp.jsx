@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, continueWithGoogle } from "../../firebase";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { auth } from "../../firebase";
 
 import Header from "../partials/Header";
 
@@ -10,6 +14,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [formError, setFormError] = useState("");
+  const provider = new GoogleAuthProvider();
 
   const signUp = async () => {
     event.preventDefault();
@@ -28,7 +33,15 @@ function SignUp() {
     }
 
     try {
-      const user = await createUserWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const continueWithGoogle = async () => {
+    try {
+      signInWithPopup(auth, provider);
     } catch (error) {
       alert(error.message);
     }
