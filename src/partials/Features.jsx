@@ -74,8 +74,8 @@ function Features() {
                       (1) Create an account
                     </div>
                     <div className="text-gray-600">
-                      Sign up with email & password or use Google/Github. Create
-                      your profile & list any developer experience.
+                      Sign up with email & password or continue with Google to create
+                      your profile.
                     </div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">
