@@ -73,14 +73,6 @@ function HeroHome() {
                     Get started
                   </Link>
                 </div>
-                <div>
-                  <a
-                    className="btn text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"
-                    href="#0"
-                  >
-                    Learn more
-                  </a>
-                </div>
               </div>
             </div>
           </div>
