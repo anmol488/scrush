@@ -1,6 +1,31 @@
-import React from "react";
+import { addDoc, collection } from "firebase/firestore";
+import React, { useState } from "react";
+import { db } from "../../firebase";
 
 function Newsletter() {
+  const [email, setEmail] = useState("");
+  const [formError, setFormError] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const submit = async () => {
+    event.preventDefault();
+    if (formError) setFormError("");
+
+    if (!email.includes("@")) {
+      return setFormError("Please enter a valid email");
+    }
+
+    setSuccess(false)
+    try {
+      await addDoc(collection(db, "newsletter"), {
+        email: email,
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+    setSuccess(true);
+  };
+
   return (
     <section className="mt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -103,21 +128,37 @@ function Newsletter() {
                   product news that matters. It's free!
                 </p>
 
+                <div className="text-red-500 text-center mt-6">{formError}</div>
+
+                {success ? (
+                  <div className="text-green-500 text-center mt-6">
+                    You've been subscribed. Thank you!!
+                  </div>
+                ) : (
+                  " "
+                )}
+
                 {/* CTA form */}
                 <form className="w-full lg:w-auto">
                   <div className="flex flex-col sm:flex-row justify-center max-w-xs mx-auto sm:max-w-md lg:mx-0">
                     <input
+                      id="email"
                       type="email"
                       className="form-input w-full appearance-none bg-gray-800 border border-gray-700 focus:border-gray-600 rounded-sm px-4 py-3 mb-2 sm:mb-0 sm:mr-2 text-white placeholder-gray-500"
                       placeholder="Your email"
                       aria-label="Your email"
+                      required
+                      onChange={(event) => {
+                        setEmail(event.target.value);
+                      }}
                     />
-                    <a
+                    <button
+                      type="submit"
                       className="btn text-white bg-blue-600 hover:bg-blue-700 shadow"
-                      href="#0"
+                      onClick={submit}
                     >
                       Subscribe
-                    </a>
+                    </button>
                   </div>
                   {/* Success message */}
                   {/* <p className="text-sm text-gray-400 mt-3">Thanks for subscribing!</p> */}
