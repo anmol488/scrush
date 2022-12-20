@@ -139,8 +139,8 @@ function Features() {
                       (3) Browse & connect
                     </div>
                     <div className="text-gray-600">
-                      Once you're all setup, you can view other student
-                      creators' product pages and get to know more about them.
+                      Scroll down and view other student creators' product pages and get
+                      to know more about them.
                     </div>
                   </div>
                   <div className="flex justify-center items-center w-8 h-8 bg-white rounded-full shadow flex-shrink-0 ml-3">

@@ -20,6 +20,14 @@ function App() {
   const [user, setUser] = useAuthState(auth);
 
   useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    } else {
+      navigate("/");
+    }
+  }, [user]);
+
+  useEffect(() => {
     AOS.init({
       once: true,
       disable: "phone",
@@ -33,14 +41,6 @@ function App() {
     window.scroll({ top: 0 });
     document.querySelector("html").style.scrollBehavior = "";
   }, [location.pathname]); // triggered on route change
-
-  useEffect(() => {
-    if (user) {
-      navigate("/dashboard");
-    } else {
-      navigate("/");
-    }
-  }, [user]);
 
   return (
     <>
