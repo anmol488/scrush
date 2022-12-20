@@ -30,7 +30,7 @@ export default function ProductModal() {
       return setFormError("Please enter a valid email");
     }
 
-    if (!productSocial.includes("github")) {
+    if (!productSocial.includes(".com")) {
       return setFormError("Please enter accepted URLs");
     }
 
@@ -185,7 +185,7 @@ export default function ProductModal() {
                             id="product-social"
                             type="text"
                             className="form-input w-full text-gray-800"
-                            placeholder="Paste your product's Github link"
+                            placeholder="Paste your product's social links"
                             required
                             onChange={(event) => {
                               setProductSocial(event.target.value);
