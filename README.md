@@ -9,11 +9,10 @@
 3. Vite.js
 4. Sticky.js
 5. HTML & CSS + JavaScript
-6. React Hook Form
-7. AOS Scroll Animations
-8. React Router DOM
-9. React Icons
-10. Hero Icons
-11. Firebase Auth
-12. Firebase Cloud Firestore
-13. Headless UI
+6. AOS Scroll Animations
+7. React Router DOM
+8. React Icons
+9. Hero Icons
+10. Firebase Auth
+11. Firebase Cloud Firestore
+12. Headless UI
