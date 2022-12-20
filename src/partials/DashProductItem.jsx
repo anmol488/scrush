@@ -14,7 +14,7 @@ function DashProductItem({ product }) {
         {product.productDesc}
       </p>
       <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">
-        Github Repo Link
+        Social Link
       </h4>
       <p className="text-gray-600 text-center mb-5">{product.productSocialLink}</p>
     </div>
